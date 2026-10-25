@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciro - Joyería</title>
 
-    <!-- CDN de Tailwind 3.x para navegador -->
     <script src="../js/shop.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../js/tailwind-config.js"></script>
+    <link href="./src/output.css" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -61,7 +59,7 @@
                 <!-- Izquierda: Menú Hamburguesa + Buscador -->
                 <div class="flex items-center gap-3">
                     <button
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm"
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm cursor-pointer"
                         aria-label="Filtros">
                         <i class="fa-solid fa-bars"></i>
                     </button>
@@ -75,24 +73,27 @@
                 <!-- Derecha: Botones de ordenación (Checkboxes) -->
                 <div class="flex flex-wrap items-center gap-2 text-xs">
 
-                    <!-- Opción: New -->
-                    <label class="cursor-pointer">
-                        <input type="checkbox" name="sort" value="new" class="peer hidden">
-                        <span
-                            class=" bg-colorPrimary/10
-                                    text-colorPrimary
-                                    hover:bg-colorPrimary-hover
-                                    hover:text-colorBtnText
-                                    peer-checked:bg-colorPrimary 
-                                    peer-checked:text-colorBtnText 
-                                    px-3 
-                                    py-1.5 
-                                    rounded-md 
-                                    font-medium 
-                                    transition-colors">
-                            <i class="fa-solid fa-check text-[10px] hidden peer-checked:inline-block"></i> New
-                        </span>
-                    </label>
+
+<!-- Opción: New -->
+<label class="cursor-pointer">
+    <input type="checkbox" name="sort" value="new" class="peer hidden" checked>
+
+    <span class="bg-colorPrimary/10 
+                text-colorPrimary 
+                hover:bg-colorPrimary-hover 
+                hover:text-colorBtnText 
+                peer-checked:bg-colorPrimary 
+                peer-checked:text-colorBtnText px-3 py-1.5 
+                rounded-md font-medium 
+                transition-colors 
+                inline-flex 
+                items-center gap-1.5">
+        <!-- <i class="fa-solid fa-check text-[10px]"></i> -->
+        New
+    </span>
+</label>
+
+
 
                     <!-- Opción: Preu ascendent -->
                     <label class="cursor-pointer">
@@ -133,7 +134,7 @@
 
                     <!-- Opción: Puntuació -->
                     <label class="cursor-pointer">
-                        <input type="checkbox" name="sort" value="rating" class="peer hidden">
+                        <input type="checkbox" name="sort" value="rating" class="peer hidden" checked>
                         <span class="bg-colorPrimary/10
                                     text-colorPrimary
                                     hover:bg-colorPrimary-hover
@@ -162,11 +163,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
                             alt="Anillo Solitario Diamond Sparkle"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -183,11 +183,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop"
                             alt="Pulsera Rígida Titanio Black"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -204,11 +203,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
                             alt="Anillo Compromiso Gold Royale"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -225,11 +223,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
                             alt="Pendientes Hoop Silver Classic"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -246,11 +243,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
                             alt="Colgante Medalla Rose Gold"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -268,11 +264,10 @@
                         class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
                         <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
                             alt="Gargantilla Perlas Cultivadas"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/4A151C/E5DDD5?text=CIRO+Jewelry';" />
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
                     <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
                         Afegir a la cesta
                     </button>
                     <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
@@ -302,16 +297,16 @@
                 <!-- Botones de Paginación -->
                 <div class="flex items-center gap-1.5">
                     <button
-                        class="bg-colorPrimary/10 text-colorPrimary hover:bg-colorPrimary-hover hover:text-colorBtnText border border-colorPrimary/30 px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1">
+                        class="bg-colorPrimary/10 text-colorPrimary hover:bg-colorPrimary-hover hover:text-colorBtnText border border-colorPrimary/30 px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer">
                         <i class="fa-solid fa-arrow-left text-[10px]"></i> Previous
                     </button>
 
                     <button
-                        class="w-7 h-7 bg-colorPrimary text-colorBtnText rounded-md flex items-center justify-center font-bold">
+                        class="w-7 h-7 bg-colorPrimary text-colorBtnText rounded-md flex items-center justify-center font-bold cursor-pointer">
                         1
                     </button>
                     <button
-                        class="w-7 h-7 bg-colorPrimary/10 hover:bg-colorPrimary-hover text-colorPrimary border border-colorPrimary/30 hover:text-colorBtnText rounded-md flex items-center justify-center font-medium transition-colors">
+                        class="w-7 h-7 bg-colorPrimary/10 hover:bg-colorPrimary-hover text-colorPrimary border border-colorPrimary/30 hover:text-colorBtnText rounded-md flex items-center justify-center font-medium transition-colors cursor-pointer">
                         2
                     </button>
                     <button class="w-7 h-7 bg-colorPrimary/10 
@@ -322,13 +317,14 @@
                                         justify-center font-medium transition-colors
                                         border 
                                         border-colorPrimary/30
+                                        cursor-pointer
                                         ">
                         3
                     </button>
                     <span class="px-1 text-brand-muted">...</span>
 
                     <button
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1">
+                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer">
                         Next <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </button>
                 </div>

@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-colorFons: #DED4CA;
+    --color-colorFonsContenidor: #DED4CA;
+    --color-colorPrimary: #5C1D24;
+    --color-colorPrimary-hover: #45151B;
+    --color-colorBorder: #5C1D24;
+    --color-colorBorderDark: #828282;
+
+    --color-colorTitol: #1F1F1F;
+    --color-colorSubtitol: #6B625D;
+    --color-colorBtnText: #FFFFFF;
+
+    --color-brand-bg: #E2D9D2;
+    --color-brand-card: #DFD6CE;
+    --color-brand-burgundy: #5C1D24;
+    --color-brand-burgundy-hover: #45151B;
+    --color-brand-dark: #3E3835;
+    --color-brand-muted: #6B625D;
+
+    --font-serif: "Playfair Display", serif;
+    --font-sans: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #E2D9D2;
+    color: #3E3835;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.card-border {
+    border: 1px solid #8C7D73;
+}
