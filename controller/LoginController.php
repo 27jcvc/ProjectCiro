@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../view/login/LoginView.php');
 
 
 // Procesa la acción enviada por el formulario en cada petición.
-function main(): void
+function carregarArticles(): void
 {
 
     try {

@@ -83,7 +83,7 @@
 
                     <!-- Ja tinc compte link -->
                     <div class="pt-1">
-                        <a href="login.html" class="text-xs text-colorTitol hover:text-colorPrimary-hover underline underline-offset-2 transition-colors">
+                        <a href="index.php?action=login" class="text-xs text-colorTitol hover:text-colorPrimary-hover underline underline-offset-2 transition-colors">
                             Ja tinc compte
                         </a>
                     </div>

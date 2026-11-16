@@ -1,25 +1,6 @@
-<?php
-
-    if (isset($_GET['qt_pagines']) && ($_GET['qt_pagines'] < 6 || $_GET['qt_pagines'] > 24)) {
-        header('Location: .');
-        exit();
-    };
-    
-    // ! TODO: Hacer que las cookies funcionen bien
-    // 1. Prioritat: Si l'usuari ha seleccionat un nombre per URL, l'agafem i actualitzem la cookie
-    if (isset($_GET['qt_pagines'])) {
-        $aPerPagina = intval($_GET['qt_pagines']);
-        setcookie('paginacio', $aPerPagina);
-    }
-    // 2. Segona opció: Si no ve per URL, però la galeta ja existeix prèviament
-    elseif (isset($_COOKIE['paginacio'])) {
-        $aPerPagina = intval($_COOKIE['paginacio']);
-    }
-    // 3. Valor per defecte si no hi ha ni URL ni galeta
-    else {
-        $aPerPagina = 6;
-    }
-
+<?= 
+    desarDades();
+    comprovarDades();
 ?>
 
 <!DOCTYPE html>
@@ -53,12 +34,12 @@
             Qui som?</a>
 
         <!-- Con clases nativas de Tailwind -->
-        <a href="./login.html"
+        <a href="index.php?action=login"
             class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
             Iniciar sessió
         </a>
 
-        <a href="register.html"
+        <a href="index.php?action=register"
             class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
             Crear compte
         </a>
@@ -174,17 +155,8 @@
                 </label>
             </div>
         </div>
-
-        <?php
-        ?>
-
-
-        <!-- CONTROLES DE PAGINACIÓN INFERIORES -->
-                <?= 
-                // require_once('/../');
-                main(); 
-                
-                ?>
+                <!-- CONTROLES DE PAGINACIÓN INFERIORES -->
+                <?= carregarArticles(); ?>
     </main>
 
     <!-- FOOTER -->

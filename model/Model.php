@@ -3,6 +3,11 @@
 // Incluye la clase utilizada para representar cada fila de artículos.
 include_once('Article.php');
 
+
+class Model{
+
+}
+
 // Inserta un artículo nuevo mediante una consulta preparada.
 function addArticle($titol, $cos)
 {

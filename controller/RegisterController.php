@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../view/register/RegisterView.php');
 
 
 // Procesa la acción enviada por el formulario en cada petición.
-function main(): void
+function carregarArticles(): void
 {
     try {
         $mensaje = '';

@@ -66,7 +66,7 @@
 
                     <!-- Vull registrar-me link -->
                     <div class="pt-1">
-                        <a href="register.html" class="text-xs text-colorTitol hover:text-colorPrimary-hover underline underline-offset-2 transition-colors">
+                        <a href="index.php?action=register" class="text-xs text-colorTitol hover:text-colorPrimary-hover underline underline-offset-2 transition-colors">
                             Vull registrar-me
                         </a>
                     </div>

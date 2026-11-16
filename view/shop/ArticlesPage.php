@@ -47,12 +47,24 @@ function renderArticleSection(array $articles): void
     echo '</section>';
 }
 
-function imprimirPaginacionCompleta(int $articles_per_pagina, int $currentPage, int $nPages): void
+/**
+ * 
+ * @param int $articles_per_pagina Integer de la quantitat de articles per pagina
+ * @param int $currentPage Integer de la pagina actual
+ * @param int $nPages Integer del numero de pagines que tenim
+ * @param Array $opt_per_pagina Array de opcions que pot seleccionar l'usuari
+ * @return void
+ */
+function imprimirPaginacionCompleta(int $articles_per_pagina, int $currentPage, int $nPages, Array $opt_per_pagina): void
 {
     // Normalitza els valors per evitar estats incoherents.
     if ($articles_per_pagina < 1) {
-        $articles_per_pagina = 5;
+        $articles_per_pagina = 6;
+    }elseif($articles_per_pagina > max($opt_per_pagina)){
+        $articles_per_pagina = max($opt_per_pagina);
     }
+
+
     if ($nPages < 1) {
         $nPages = 1;
     }
@@ -78,8 +90,8 @@ function imprimirPaginacionCompleta(int $articles_per_pagina, int $currentPage, 
     echo '<select name="qt_pagines" id="qt_pagines_select" class="' . $classSelect . '" onchange="this.form.submit()">';
 
     // Opcions habituals i, si cal, el valor actual perquè quedi seleccionat.
-    // TODO: Hacer que la qt de articulos por pagina no se definan individualmente
-    $opcions = array_values(array_unique(array_merge([6, 12, 24], [$articles_per_pagina])));
+    // optArticles -> Opcions que veu l'usuari per seleccionar
+    $opcions = array_values(array_unique(array_merge($opt_per_pagina, [$articles_per_pagina])));
     sort($opcions);
     foreach ($opcions as $cantidad) {
         $selected = ($cantidad === $articles_per_pagina) ? ' selected' : '';

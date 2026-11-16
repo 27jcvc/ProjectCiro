@@ -14,6 +14,7 @@ $action = $_GET['action'] ?? 'home';
 switch ($action) {
     case 'shop':
         require __DIR__ . '/ShopController.php';
+        // carregarArticles();
         break;
     case 'register':
         require __DIR__ . '/RegisterController.php';
