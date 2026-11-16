@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inici de sessió - Ciro</title>
 
-    <link href="./src/output.css" rel="stylesheet">
+    <link href="./public/src/output.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     <header
         class="w-full px-6 py-6 md:px-12 flex justify-end items-center gap-4 md:gap-6 text-xs md:text-sm font-medium border-b border-colorBorderDark/50">
         
-        <a href="index.html" class="text-colorTitol hover:text-colorPrimary-hover font-medium text-base underline underline-offset-4 transition-colors">
+        <a href="index.php?action=home" class="text-colorTitol hover:text-colorPrimary-hover font-medium text-base underline underline-offset-4 transition-colors">
             Tornar al inici
         </a>
     </header>
