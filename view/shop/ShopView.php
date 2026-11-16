@@ -1,3 +1,27 @@
+<?php
+
+    if (isset($_GET['qt_pagines']) && ($_GET['qt_pagines'] < 6 || $_GET['qt_pagines'] > 24)) {
+        header('Location: .');
+        exit();
+    };
+    
+    // ! TODO: Hacer que las cookies funcionen bien
+    // 1. Prioritat: Si l'usuari ha seleccionat un nombre per URL, l'agafem i actualitzem la cookie
+    if (isset($_GET['qt_pagines'])) {
+        $aPerPagina = intval($_GET['qt_pagines']);
+        setcookie('paginacio', $aPerPagina);
+    }
+    // 2. Segona opció: Si no ve per URL, però la galeta ja existeix prèviament
+    elseif (isset($_COOKIE['paginacio'])) {
+        $aPerPagina = intval($_COOKIE['paginacio']);
+    }
+    // 3. Valor per defecte si no hi ha ni URL ni galeta
+    else {
+        $aPerPagina = 6;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="ca" class="scroll-smooth">
 
@@ -6,10 +30,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciro - Joyería</title>
 
-    <link href="./src/output.css" rel="stylesheet">
+    <script src="./public/js/shop.js"></script>
+    <link href="./public/src/output.css" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,30 +45,27 @@
 
 </head>
 
-<!-- border-t border-brand-border/50 -->
-
 <body class="bg-colorFons min-h-screen flex flex-col justify-between overflow-x-hidden">
     <!-- HEADER / NAVIGATION -->
     <header
         class="w-full px-6 py-6 md:px-12 flex justify-end items-center gap-4 md:gap-6 text-xs md:text-sm font-medium">
-        <a href="#chi-siamo" class="text-colorTitol hover:text-colorPrimary-hover transition-colors mr-2">
+        <a href="index.html#chi-siamo" class="text-colorTitol hover:text-colorPrimary-hover transition-colors mr-2">
             Qui som?</a>
 
         <!-- Con clases nativas de Tailwind -->
         <a href="./login.html"
-            class="bg-colorPrimary hover:bg-colorPrimary-hover text-white px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
+            class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
             Iniciar sessió
         </a>
 
         <a href="register.html"
-            class="bg-colorPrimary hover:bg-colorPrimary-hover text-white px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
+            class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
             Crear compte
         </a>
 
         <!-- Cart Icon with badge -->
         <div class="relative cursor-pointer ml-1 p-1 group" title="Carrito de compras">
-            <i
-                class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
+            <i class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
             <span id="cart-badge"
                 class="absolute -top-1 -right-2 bg-colorPrimary text-colorBtnText text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-colorBorder">
                 0
@@ -50,89 +73,119 @@
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="flex-grow flex flex-col items-center justify-center w-full">
+    <!-- MAIN CONTENT (CONTROLES Y TIENDA) -->
+    <main class="flex-grow p-4 md:p-8 lg:p-10 max-w-6xl mx-auto w-full">
 
-        <!-- HERO SECTION -->
-    <section
-            class="relative w-full text-center py-10 md:py-16 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] border-b border-colorBorderDark/50">
+        <!-- BARRA DE FILTROS Y BÚSQUEDA -->
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-8">
 
-            <!-- CIRO LOGO ARTWORK -->
-            <!-- Poner un svg -->
-            <div class="mb-6 flex flex-col items-center justify-center">
-                <img src="./logo/logoNegre.png" alt="Logo de Ciro Jewelry"
-                    class="w-48 h-auto md:w-64 object-contain text-colorTitol" />
-            </div>
-            </div>
+            <!-- Izquierda: Menú Hamburguesa + Buscador -->
+            <div class="flex items-center gap-3">
+                <button
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm cursor-pointer"
+                    aria-label="Filtros">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
 
-            <!-- Tagline -->
-            <p class="text-sm md:text-base text-colorTitol tracking-wide max-w-md mb-8">
-                <!-- Tu esencia brilla en los pequeños detalles. -->
-                La teva essència brilla en els petits detalls.
-            </p>
-
-            <!-- Tienda Button -->
-            <a href="shop.html"
-                class="inline-block bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-8 py-2 md:py-2.5 rounded-md transition-all shadow-sm text-sm">
-                Botiga
-            </a>
-
-                <!-- Scroll Down Chevron situado abajo del todo y centrado -->
-                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer">
-                    <a href="#chi-siamo" aria-label="Ir a sección Chi siamo"
-                        class="inline-block text-colorPrimary opacity-80 hover:opacity-100 transition-opacity">
-                        <i class="fa-sharp fa-solid fa-chevron-down text-2xl animate-bounce"></i>
-                    </a>
-                </div>
-
-
-        </section>
-
-        <!-- CHI SIAMO SECTION -->
-        <section id="chi-siamo" class="rounded-xl w-full my-10 md:my-16 max-w-4xl px-4 md:px-0">
-            <div
-                class="border border-colorBorder md:border-2 rounded-xl overflow-hidden bg-brand-card/30 grid grid-cols-1 md:grid-cols-2 shadow-sm">
-
-                <!-- Left Column: Content -->
-                <div class="p-8 md:p-12 lg:p-14 flex flex-col justify-center space-y-5 
-                    text-colorSubtitol
-                    text-xs 
-                    md:text-sm 
-                    leading-relaxed">
-                    <h2
-                        class="font-serif italic text-2xl md:text-3xl lg:text-4xl text-colorTitol font-semibold tracking-tight">
-                        Chi siamo
-                    </h2>
-
-                    <p>
-                        Crediamo che ogni gioiello sia molto più di un accessorio: è un'emozione da custodire, un
-                        ricordo da portare con sé, un legame che attraversa il tempo.
-                    </p>
-
-                    <p>
-                        La passione per la bellezza e l'attenzione ai dettagli guidano il nostro modo di vivere la
-                        gioielleria. Amiamo l'eleganza che parla di chi la indossa e rende preziosi anche i piccoli
-                        momenti.
-                    </p>
-
-                    <p>
-                        Desideriamo accompagnarti nella scelta di un gioiello che ti rappresenti, da regalare a una
-                        persona speciale o da dedicare a te. Perché il suo valore più autentico è la storia che
-                        racconterà.
-                    </p>
-                </div>
-
-                <!-- Right Column: Image -->
-                <!-- TODO: añadir mas imagenes -->
-                <div class="relative min-h-[300px] md:min-h-[440px] w-full overflow-hidden">
-                    <img src="./images/imageIndex.jpg" alt="Elegante gargantilla de joyas Ciro"
-                        class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700" />
+                <div class="relative flex-grow sm:flex-grow-0">
+                    <input type="text" placeholder="Search"
+                        class="bg-colorPrimary text-colorBtnText placeholder-colorBtnText/70 text-xs rounded-full px-4 py-2 pr-8 w-full sm:w-44 focus:outline-none focus:ring-1 focus:ring-colorPrimary ">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-colorBtnText/70 text-xs"></i>
                 </div>
             </div>
-        </section>
+            <!-- Derecha: Botones de ordenación (Checkboxes) -->
+            <div class="flex flex-wrap items-center gap-2 text-xs">
 
+
+                <!-- Opción: New -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="new" class="peer hidden" checked>
+
+                    <span class="bg-colorPrimary/10 
+                text-colorPrimary 
+                hover:bg-colorPrimary-hover 
+                hover:text-colorBtnText 
+                peer-checked:bg-colorPrimary 
+                peer-checked:text-colorBtnText px-3 py-1.5 
+                rounded-md font-medium 
+                transition-colors 
+                inline-flex 
+                items-center gap-1.5">
+                        <!-- <i class="fa-solid fa-check text-[10px]"></i> -->
+                        New
+                    </span>
+                </label>
+
+
+
+                <!-- Opción: Preu ascendent -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="price-asc" class="peer hidden">
+                    <span class=" bg-colorPrimary/10
+                                    text-colorPrimary
+                                    hover:bg-colorPrimary-hover
+                                    hover:text-colorBtnText
+                                    peer-checked:bg-colorPrimary 
+                                    peer-checked:text-colorBtnText 
+                                    px-3 
+                                    py-1.5 
+                                    rounded-md 
+                                    font-medium 
+                                    transition-colors">
+                        Preu ascendent
+                    </span>
+                </label>
+
+                <!-- Opción: Preu descendent -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="price-desc" class="peer hidden">
+                    <span class=" bg-colorPrimary/10
+                                    text-colorPrimary   
+                                    hover:bg-colorPrimary-hover
+                                    hover:text-colorBtnText
+                                    peer-checked:bg-colorPrimary 
+                                    peer-checked:text-colorBtnText 
+                                    px-3 
+                                    py-1.5 
+                                    rounded-md 
+                                    font-medium 
+                                    transition-colors">
+                        Preu descendent
+                    </span>
+                </label>
+
+                <!-- Opción: Puntuació -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="rating" class="peer hidden" checked>
+                    <span class="bg-colorPrimary/10
+                                    text-colorPrimary
+                                    hover:bg-colorPrimary-hover
+                                    hover:text-colorBtnText
+                                    peer-checked:bg-colorPrimary 
+                                    peer-checked:text-colorBtnText 
+                                    px-3 
+                                    py-1.5 
+                                    rounded-md 
+                                    font-medium 
+                                    transition-colors
+                                    ">
+                        Puntuació
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <?php
+        ?>
+
+
+        <!-- CONTROLES DE PAGINACIÓN INFERIORES -->
+                <?= 
+                // require_once('/../');
+                main(); 
+                
+                ?>
     </main>
-
 
     <!-- FOOTER -->
     <footer class="w-full border-t border-colorBorderDark/50 mt-12 pt-12 pb-8 px-6 md:px-12">
@@ -147,9 +200,11 @@
                     <ul class="space-y-2 text-colorSubtitol text-xs">
                         <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Preguntas Frecuentes
                                 (FAQ)</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguimiento de pedidos</a>
+                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguimiento de
+                                pedidos</a>
                         </li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de devoluciones y
+                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de devoluciones
+                                y
                                 reembolsos</a></li>
                         <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Información de envíos y
                                 tiempos de entrega</a></li>
