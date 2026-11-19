@@ -40,30 +40,28 @@
         </a>
 
         <!-- Cart Icon with badge -->
-        <div class="relative cursor-pointer ml-1 p-1 group" title="Carrito de compras">
-            <i
-                class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
+        <section class="relative cursor-pointer ml-1 p-1 group" title="Carrito de compras">
+            <i class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
             <span id="cart-badge"
-                class="absolute -top-1 -right-2 bg-colorPrimary text-colorBtnText text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-colorBorder">
+                class="absolute -top-1 -right-2 bg-colorPrimary text-colorBtnText font-bold w-4 h-4 rounded-full flex items-center justify-center border border-colorBorder">
                 0
             </span>
-        </div>
+        </section>
     </header>
 
     <!-- MAIN CONTAINER -->
     <main class="flex-grow flex flex-col items-center justify-center w-full">
 
         <!-- HERO SECTION -->
-    <section
+        <section
             class="relative w-full text-center py-10 md:py-16 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] border-b border-colorBorderDark/50">
 
             <!-- CIRO LOGO ARTWORK -->
             <!-- Poner un svg -->
-            <div class="mb-6 flex flex-col items-center justify-center">
-                <img src="./logo/logoNegre.png" alt="Logo de Ciro Jewelry"
-                    class="w-48 h-auto md:w-64 object-contain text-colorTitol" />
-            </div>
-            </div>
+            <h1 role="img">
+                <img src="./logo/logoNegre.png" alt="Logo de Ciro Jewelry" class="w-48 h-auto md:w-64 object-contain text-colorTitol mb-6
+                    flex-col items-center justify-center" />
+            </h1>
 
             <!-- Tagline -->
             <p class="text-sm md:text-base text-colorTitol tracking-wide max-w-md mb-8">
@@ -77,13 +75,13 @@
                 Botiga
             </a>
 
-                <!-- Scroll Down Chevron situado abajo del todo y centrado -->
-                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer">
-                    <a href="#chi-siamo" aria-label="Ir a sección Chi siamo"
-                        class="inline-block text-colorPrimary opacity-80 hover:opacity-100 transition-opacity">
-                        <i class="fa-sharp fa-solid fa-chevron-down text-2xl animate-bounce"></i>
-                    </a>
-                </div>
+            <!-- Scroll Down Chevron situado abajo del todo y centrado -->
+            <section class="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer">
+                <a href="#chi-siamo" aria-label="Ir a sección Chi siamo"
+                    class="inline-block text-colorPrimary opacity-80 hover:opacity-100 transition-opacity">
+                    <i class="fa-sharp fa-solid fa-chevron-down text-2xl animate-bounce"></i>
+                </a>
+            </section>
 
 
         </section>
@@ -122,8 +120,6 @@
                     </p>
                 </div>
 
-                <!-- Right Column: Image -->
-                <!-- TODO: añadir mas imagenes -->
                 <div class="relative min-h-[300px] md:min-h-[440px] w-full overflow-hidden">
                     <img src="./images/imageIndex.jpg" alt="Elegante gargantilla de joyas Ciro"
                         class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700" />
@@ -134,96 +130,163 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- PEU DE PÀGINA -->
     <footer class="w-full border-t border-colorBorderDark/50 mt-12 pt-12 pb-8 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
+        <section class="max-w-6xl mx-auto">
 
-            <!-- 4 Column Footer Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-xs md:text-sm">
+            <!-- Graella de 4 columnes -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-xs md:text-sm">
 
-                <!-- Column 1: Atención al Cliente -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Atención al Cliente</h3>
+                <!-- Columna 1: Atenció al Client -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Atenció al Client</h3>
                     <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Preguntas Frecuentes
-                                (FAQ)</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguimiento de pedidos</a>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Preguntes Freqüents
+                                    (FAQ)</a>
+                            </h2>
                         </li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de devoluciones y
-                                reembolsos</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Información de envíos y
-                                tiempos de entrega</a></li>
-                        <li class="pt-1"><a href="#"
-                                class="hover:text-colorPrimary-hover transition-colors leading-relaxed block">Contacto:
-                                Correo de soporte, teléfono o acceso directo a WhatsApp/Chat.</a></li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguiment de
+                                    comandes</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de
+                                    devolucions i
+                                    reemborsaments</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Informació
+                                    d'enviaments i
+                                    terminis de lliurament</a>
+                            </h2>
+                        </li>
+                        <li class="pt-1">
+                            <h2>
+                                <a href="#"
+                                    class="hover:text-colorPrimary-hover transition-colors leading-relaxed block">Contacte:
+                                    Correu de suport, telèfon o accés directe a WhatsApp/Xat.</a>
+                            </h2>
+                        </li>
                     </ul>
-                </div>
+                </section>
 
-                <!-- Column 2: Confianza y Seguridad -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Confianza y Seguridad</h3>
+                <!-- Columna 2: Confiança i Seguretat -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Confiança i Seguretat</h3>
                     <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Métodos de pago
-                                aceptados</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Empresas de transporte</a>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">
+                                    Mètodes de pagament acceptats
+                                </a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Empreses de
+                                    transport</a>
+                            </h2>
                         </li>
                     </ul>
-                </div>
+                </section>
 
-                <!-- Column 3: Información Legal y Corporativa -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Información Legal y Corporativa
+                <!-- Columna 3: Informació Legal i Corporativa -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Informació Legal i Corporativa
                     </h3>
                     <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Términos y condiciones</a>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Termes i
+                                    condicions</a>
+                            </h2>
                         </li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Política de privacidad y
-                                Aviso legal</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Configuración / Política de
-                                cookies</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Sobre nosotros / Nuestra
-                                historia</a></li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Política de privacitat i
+                                    Avís legal</a>
+                        </li>
+                        </h2>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Configuració / Política
+                                    de
+                                    cookies</a>
+                        </li>
+                        </h2>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Sobre nosaltres / La nostra
+                                    història</a>
+                            </h2>
+                        </li>
                     </ul>
-                </div>
+                </section>
 
-                <!-- Column 4: Navegación y Localización -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Navegación y Localización</h3>
+                <!-- Columna 4: Navegació i Localització -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Navegació i Localització</h3>
                     <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Selector de idioma y
-                                moneda</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Buscador de tiendas
-                                físicas</a></li>
+
+                        <li>
+                            <h2>
+                                <a href="#"
+                                    class="hover:text-colorPrimary-hover text-colorSubtitol transition-colors">Selector
+                                    d'idioma i
+                                    moneda</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Cercador de botigues
+                                    físiques</a>
+                            </h2>
+                        </li>
                     </ul>
-                </div>
+                </section>
 
-            </div>
+            </section>
 
-            <!-- Footer Bottom Line -->
-            <div
+            <!-- Línia inferior del peu -->
+            <section
                 class="pt-6 border-t border-colorBorderDark/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-brand-muted">
-                <div class="text-colorTitol">
-                    © 2024 Ciro. Todos los derechos reservados.
-                </div>
 
-                <!-- Social Media Icons -->
-                <div class="flex items-center space-x-4 text-base text-colorTitol">
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="X / Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
+                <h2 class="text-colorTitol">© 2024 Ciro. Tots els drets reservats.</h2>
 
-        </div>
+
+                <!-- Icones de xarxes socials -->
+                <section class="flex items-center space-x-4 text-base text-colorTitol">
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="X / Twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </h2>
+                </section>
+            </section>
+
+        </section>
     </footer>
 
 </body>

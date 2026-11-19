@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ca" class="scroll-smooth">
+<html lang="ca" class="scroll-smooth motion-reduce:scroll-auto">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciro - Joyería</title>
+    <title>Ciro - Joieria</title>
 
     <script src="./js/shop.js"></script>
     <link href="./src/output.css" rel="stylesheet">
@@ -19,412 +19,539 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Accessibilitat: estils que no depenen de recompilar Tailwind -->
+    <style>
+        /* Text només per a lectors de pantalla */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Enllaç "saltar al contingut": ocult fins que rep el focus amb el tabulador */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0.5rem;
+            z-index: 50;
+            padding: 0.5rem 1rem;
+            background: #fff;
+            color: #000;
+            text-decoration: underline;
+            border-radius: 0.25rem;
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+
+        .skip-link:focus {
+            top: 0.5rem;
+        }
+    </style>
 </head>
 
 <body class="bg-colorFons min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Enllaç per saltar al contingut (primer element en tabular) -->
+    <a href="#contingut-principal" class="skip-link">
+        Saltar al contingut principal
+    </a>
+
     <!-- HEADER / NAVIGATION -->
     <header
         class="w-full px-6 py-6 md:px-12 flex justify-end items-center gap-4 md:gap-6 text-xs md:text-sm font-medium">
-        <a href="index.html#chi-siamo" class="text-colorTitol hover:text-colorPrimary-hover transition-colors mr-2">
-            Qui som?</a>
+        <nav aria-label="Navegació principal" class="flex items-center gap-4 md:gap-6">
+            <a href="index.html#chi-siamo"
+                class="text-colorTitol hover:text-colorPrimary-hover transition-colors mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                Qui som?</a>
 
-        <!-- Con clases nativas de Tailwind -->
-        <a href="./login.html"
-            class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
-            Iniciar sessió
-        </a>
+            <a href="./login.html"
+                class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                Iniciar sessió
+            </a>
 
-        <a href="register.html"
-            class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal">
-            Crear compte
-        </a>
+            <a href="register.html"
+                class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-2 rounded-md transition-all shadow-sm text-xs md:text-sm font-normal focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                Crear compte
+            </a>
+        </nav>
 
         <!-- Cart Icon with badge -->
-        <div class="relative cursor-pointer ml-1 p-1 group" title="Carrito de compras">
-            <i
-                class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
+        <section class="relative cursor-pointer ml-1 p-1 group" title="Carrito de compras">
+            <i class="fa-solid fa-cart-shopping group-hover:text-colorPrimary transition-colors text-lg md:text-xl"></i>
             <span id="cart-badge"
-                class="absolute -top-1 -right-2 bg-colorPrimary text-colorBtnText text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-colorBorder">
+                class="absolute -top-1 -right-2 bg-colorPrimary text-colorBtnText font-bold w-4 h-4 rounded-full flex items-center justify-center border border-colorBorder">
                 0
             </span>
-        </div>
+        </section>
     </header>
 
-        <!-- MAIN CONTENT (CONTROLES Y TIENDA) -->
-        <main class="flex-grow p-4 md:p-8 lg:p-10 max-w-6xl mx-auto w-full">
+    <!-- CONTINGUT PRINCIPAL (CONTROLS I BOTIGA) -->
+    <main id="contingut-principal" tabindex="-1"
+        class="flex-grow p-4 md:p-8 lg:p-10 max-w-6xl mx-auto w-full focus:outline-none">
 
-            <!-- BARRA DE FILTROS Y BÚSQUEDA -->
-            <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-8">
+        <h1 class="visually-hidden">Ciro - Catàleg de joieria</h1>
 
-                <!-- Izquierda: Menú Hamburguesa + Buscador -->
-                <div class="flex items-center gap-3">
-                    <button
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm cursor-pointer"
-                        aria-label="Filtros">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+        <!-- BARRA DE FILTRES I CERCA -->
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-8">
 
-                    <div class="relative flex-grow sm:flex-grow-0">
-                        <input type="text" placeholder="Search"
-                            class="bg-colorPrimary text-colorBtnText placeholder-colorBtnText/70 text-xs rounded-full px-4 py-2 pr-8 w-full sm:w-44 focus:outline-none focus:ring-1 focus:ring-colorPrimary ">
-                        <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-colorBtnText/70 text-xs"></i>
-                    </div>
+            <!-- Esquerra: menú de filtres + cercador -->
+            <div class="flex items-center gap-3">
+                <button type="button"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2"
+                    aria-label="Filtres">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+
+                <div class="relative flex-grow sm:flex-grow-0">
+                    <input type="search" placeholder="Cerca" aria-label="Cercar productes" autocomplete="off"
+                        class="bg-colorPrimary text-colorBtnText placeholder-colorBtnText/70 text-xs rounded-full px-4 py-2 pr-8 w-full sm:w-44 focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-colorBtnText/70 text-xs"
+                        aria-hidden="true"></i>
                 </div>
-                <!-- Derecha: Botones de ordenación (Checkboxes) -->
-                <div class="flex flex-wrap items-center gap-2 text-xs">
+            </div>
 
+<!-- Dreta: botons d'ordenació (checkboxes) -->
+            <fieldset class="flex flex-wrap items-center gap-2 text-xs">
+                <legend class="visually-hidden">Ordenar per</legend>
 
-<!-- Opción: New -->
-<label class="cursor-pointer">
-    <input type="checkbox" name="sort" value="new" class="peer hidden" checked>
+                <!-- Opció: Novetats -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="new" class="peer visually-hidden" checked>
 
-    <span class="bg-colorPrimary/10 
-                text-colorPrimary 
-                hover:bg-colorPrimary-hover 
-                hover:text-colorBtnText 
-                peer-checked:bg-colorPrimary 
-                peer-checked:text-colorBtnText px-3 py-1.5 
-                rounded-md font-medium 
-                transition-colors 
-                inline-flex 
+                    <span class="bg-colorPrimary/10
+                text-colorPrimary
+                hover:bg-colorPrimary-hover
+                hover:text-colorBtnText
+                peer-checked:bg-colorPrimary
+                peer-checked:text-colorBtnText
+                peer-focus-visible:ring-2
+                peer-focus-visible:ring-colorPrimary
+                peer-focus-visible:ring-offset-2
+                px-3 py-1.5
+                rounded-md font-medium
+                transition-colors
+                inline-flex
                 items-center gap-1.5">
-        <!-- <i class="fa-solid fa-check text-[10px]"></i> -->
-        New
-    </span>
-</label>
+                        Novetats
+                    </span>
+                </label>
 
-
-
-                    <!-- Opción: Preu ascendent -->
-                    <label class="cursor-pointer">
-                        <input type="checkbox" name="sort" value="price-asc" class="peer hidden">
-                        <span
-                            class=" bg-colorPrimary/10
+                <!-- Opció: Preu ascendent -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="price-asc" class="peer visually-hidden">
+                    <span class="bg-colorPrimary/10
                                     text-colorPrimary
                                     hover:bg-colorPrimary-hover
                                     hover:text-colorBtnText
-                                    peer-checked:bg-colorPrimary 
-                                    peer-checked:text-colorBtnText 
-                                    px-3 
-                                    py-1.5 
-                                    rounded-md 
-                                    font-medium 
-                                    transition-colors">
-                            Preu ascendent
-                        </span>
-                    </label>
-
-                    <!-- Opción: Preu descendent -->
-                    <label class="cursor-pointer">
-                        <input type="checkbox" name="sort" value="price-desc" class="peer hidden">
-                        <span class=" bg-colorPrimary/10
-                                    text-colorPrimary   
-                                    hover:bg-colorPrimary-hover
-                                    hover:text-colorBtnText
-                                    peer-checked:bg-colorPrimary 
-                                    peer-checked:text-colorBtnText 
-                                    px-3 
-                                    py-1.5 
-                                    rounded-md 
-                                    font-medium 
-                                    transition-colors">
-                            Preu descendent
-                        </span>
-                    </label>
-
-                    <!-- Opción: Puntuació -->
-                    <label class="cursor-pointer">
-                        <input type="checkbox" name="sort" value="rating" class="peer hidden" checked>
-                        <span class="bg-colorPrimary/10
-                                    text-colorPrimary
-                                    hover:bg-colorPrimary-hover
-                                    hover:text-colorBtnText
-                                    peer-checked:bg-colorPrimary 
-                                    peer-checked:text-colorBtnText 
-                                    px-3 
-                                    py-1.5 
-                                    rounded-md 
-                                    font-medium 
+                                    peer-checked:bg-colorPrimary
+                                    peer-checked:text-colorBtnText
+                                    peer-focus-visible:ring-2
+                                    peer-focus-visible:ring-colorPrimary
+                                    peer-focus-visible:ring-offset-2
+                                    px-3
+                                    py-1.5
+                                    rounded-md
+                                    font-medium
                                     transition-colors
-                                    ">
-                            Puntuació
-                        </span>
-                    </label>
+                                    inline-block">
+                        Preu ascendent
+                    </span>
+                </label>
+
+                <!-- Opció: Preu descendent -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="price-desc" class="peer visually-hidden">
+                    <span class="bg-colorPrimary/10
+                                    text-colorPrimary
+                                    hover:bg-colorPrimary-hover
+                                    hover:text-colorBtnText
+                                    peer-checked:bg-colorPrimary
+                                    peer-checked:text-colorBtnText
+                                    peer-focus-visible:ring-2
+                                    peer-focus-visible:ring-colorPrimary
+                                    peer-focus-visible:ring-offset-2
+                                    px-3
+                                    py-1.5
+                                    rounded-md
+                                    font-medium
+                                    transition-colors
+                                    inline-block">
+                        Preu descendent
+                    </span>
+                </label>
+
+                <!-- Opció: Puntuació -->
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="sort" value="rating" class="peer visually-hidden" checked>
+                    <span class="bg-colorPrimary/10
+                                    text-colorPrimary
+                                    hover:bg-colorPrimary-hover
+                                    hover:text-colorBtnText
+                                    peer-checked:bg-colorPrimary
+                                    peer-checked:text-colorBtnText
+                                    peer-focus-visible:ring-2
+                                    peer-focus-visible:ring-colorPrimary
+                                    peer-focus-visible:ring-offset-2
+                                    px-3
+                                    py-1.5
+                                    rounded-md
+                                    font-medium
+                                    transition-colors
+                                    inline-block">
+                        Puntuació
+                    </span>
+                </label>
+            </fieldset>
+        </div>
+
+        <h2 class="visually-hidden">Productes</h2>
+
+        <!-- GRAELLA DE PRODUCTES (3 COLUMNES A ESCRIPTORI) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+
+            <!-- PRODUCTE 1 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+                        alt="Anell Solitari Diamond Sparkle"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Anell Solitari Diamond Sparkle"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Anell Solitari Diamond Sparkle
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    450,00 €
+                </p>
             </div>
 
-            <!-- PARRILLA DE PRODUCTOS (GRID 3 COLUMNAS EN ESCRITORIO) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-
-                <!-- PRODUCTO 1 -->
-                <div class="flex flex-col items-start group">
-                    <!-- Contenedor con tamaño idéntico para todas las imágenes -->
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
-                            alt="Anillo Solitario Diamond Sparkle"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Anillo Solitario Diamond Sparkle
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        450,00 €
-                    </p>
+            <!-- PRODUCTE 2 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop"
+                        alt="Braçalet Rígid Titani Black"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
-
-                <!-- PRODUCTO 2 -->
-                <div class="flex flex-col items-start group">
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop"
-                            alt="Pulsera Rígida Titanio Black"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px]   px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Pulsera Rígida Titanio Black
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        290,00 €
-                    </p>
-                </div>
-
-                <!-- PRODUCTO 3 -->
-                <div class="flex flex-col items-start group">
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
-                            alt="Anillo Compromiso Gold Royale"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Anillo Compromiso Gold Royale
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        1.250,00 €
-                    </p>
-                </div>
-
-                <!-- PRODUCTO 4 -->
-                <div class="flex flex-col items-start group">
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
-                            alt="Pendientes Hoop Silver Classic"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Pendientes Hoop Silver Classic
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        120,00 €
-                    </p>
-                </div>
-
-                <!-- PRODUCTO 5 -->
-                <div class="flex flex-col items-start group">
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
-                            alt="Colgante Medalla Rose Gold"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Colgante Medalla Rose Gold
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        <span class="line-through text-colorSubtitul/70 mr-1">380,00 €</span>
-                        <span class="text-colorPrimary font-bold">323,00 €</span>
-                    </p>
-                </div>
-
-                <!-- PRODUCTO 6 -->
-                <div class="flex flex-col items-start group">
-                    <div
-                        class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
-                            alt="Gargantilla Perlas Cultivadas"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                    </div>
-                    <button onclick="addToCart()"
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer">
-                        Afegir a la cesta
-                    </button>
-                    <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
-                        Gargantilla Perlas Cultivadas
-                    </h3>
-                    <p class="text-colorSubtitul text-xs md:text-sm font-medium mt-1">
-                        580,00 €
-                    </p>
-                </div>
-
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Braçalet Rígid Titani Black"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Braçalet Rígid Titani Black
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    290,00 €
+                </p>
             </div>
 
-            <!-- CONTROLES DE PAGINACIÓN INFERIORES -->
-            <div class="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-                <!-- Dropdown selector de cantidad -->
-                <div class="relative">
-                    <select
-                        class="appearance-none bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-1.5 pr-8 rounded-md font-medium cursor-pointer focus:outline-none">
-                        <option value="6" selected>6</option>
-                        <option value="12">12</option>
-                        <option value="24">24</option>
-                    </select>
-                    <i
-                        class="fa-solid fa-chevron-down absolute right-2.5 top-2.5 text-colorBtnText text-[10px] pointer-events-none"></i>
+            <!-- PRODUCTE 3 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+                        alt="Anell de Compromís Gold Royale"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
-
-                <!-- Botones de Paginación -->
-                <div class="flex items-center gap-1.5">
-                    <button
-                        class="bg-colorPrimary/10 text-colorPrimary hover:bg-colorPrimary-hover hover:text-colorBtnText border border-colorPrimary/30 px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer">
-                        <i class="fa-solid fa-arrow-left text-[10px]"></i> Previous
-                    </button>
-
-                    <button
-                        class="w-7 h-7 bg-colorPrimary text-colorBtnText rounded-md flex items-center justify-center font-bold cursor-pointer">
-                        1
-                    </button>
-                    <button
-                        class="w-7 h-7 bg-colorPrimary/10 hover:bg-colorPrimary-hover text-colorPrimary border border-colorPrimary/30 hover:text-colorBtnText rounded-md flex items-center justify-center font-medium transition-colors cursor-pointer">
-                        2
-                    </button>
-                    <button class="w-7 h-7 bg-colorPrimary/10 
-                                        hover:bg-colorPrimary-hover 
-                                        text-colorPrimary 
-                                        hover:text-colorBtnText rounded-md 
-                                        flex items-center 
-                                        justify-center font-medium transition-colors
-                                        border 
-                                        border-colorPrimary/30
-                                        cursor-pointer
-                                        ">
-                        3
-                    </button>
-                    <span class="px-1 text-brand-muted">...</span>
-
-                    <button
-                        class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer">
-                        Next <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
-                </div>
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Anell de Compromís Gold Royale"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Anell de Compromís Gold Royale
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    1.250,00 €
+                </p>
             </div>
 
-        </main>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="w-full border-t border-colorBorderDark/50 mt-12 pt-12 pb-8 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-
-            <!-- 4 Column Footer Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-xs md:text-sm">
-
-                <!-- Column 1: Atención al Cliente -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Atención al Cliente</h3>
-                    <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Preguntas Frecuentes
-                                (FAQ)</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguimiento de pedidos</a>
-                        </li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de devoluciones y
-                                reembolsos</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Información de envíos y
-                                tiempos de entrega</a></li>
-                        <li class="pt-1"><a href="#"
-                                class="hover:text-colorPrimary-hover transition-colors leading-relaxed block">Contacto:
-                                Correo de soporte, teléfono o acceso directo a WhatsApp/Chat.</a></li>
-                    </ul>
+            <!-- PRODUCTE 4 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
+                        alt="Arracades Hoop Silver Classic"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
-
-                <!-- Column 2: Confianza y Seguridad -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Confianza y Seguridad</h3>
-                    <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Métodos de pago
-                                aceptados</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Empresas de transporte</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Información Legal y Corporativa -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Información Legal y Corporativa
-                    </h3>
-                    <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Términos y condiciones</a>
-                        </li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Política de privacidad y
-                                Aviso legal</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Configuración / Política de
-                                cookies</a></li>
-                        <li><a href="#" class="hover:text-brand-burgundy transition-colors">Sobre nosotros / Nuestra
-                                historia</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Navegación y Localización -->
-                <div class="space-y-3">
-                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Navegación y Localización</h3>
-                    <ul class="space-y-2 text-colorSubtitol text-xs">
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Selector de idioma y
-                                moneda</a></li>
-                        <li><a href="#" class="hover:text-colorPrimary-hover transition-colors">Buscador de tiendas
-                                físicas</a></li>
-                    </ul>
-                </div>
-
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Arracades Hoop Silver Classic"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Arracades Hoop Silver Classic
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    120,00 €
+                </p>
             </div>
 
-            <!-- Footer Bottom Line -->
-            <div
-                class="pt-6 border-t border-colorBorderDark/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-brand-muted">
-                <div class="text-colorTitol">
-                    © 2024 Ciro. Todos los derechos reservados.
+            <!-- PRODUCTE 5 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+                        alt="Penjoll Medalla Rose Gold"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Penjoll Medalla Rose Gold"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Penjoll Medalla Rose Gold
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    <span class="visually-hidden">Preu original:</span>
+                    <span class="line-through text-colorSubtitol/70 mr-1">380,00 €</span>
+                    <span class="visually-hidden">Preu amb descompte:</span>
+                    <span class="text-colorPrimary font-bold">323,00 €</span>
+                </p>
+            </div>
 
-                <!-- Social Media Icons -->
-                <div class="flex items-center space-x-4 text-base text-colorTitol">
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="X / Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
+            <!-- PRODUCTE 6 -->
+            <div class="flex flex-col items-start group">
+                <div class="w-full aspect-[16/10] bg-colorPrimary rounded-md overflow-hidden mb-3 relative shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+                        alt="Gargantilla de Perles Cultivades"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:transform-none" />
                 </div>
+                <button type="button" onclick="addToCart()"
+                    aria-label="Afegir a la cistella: Gargantilla de Perles Cultivades"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText text-[11px] px-3 py-1 rounded-md mb-2 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Afegir a la cistella
+                </button>
+                <h3 class="italic font-semibold text-lg md:text-xl text-colorTitol leading-snug">
+                    Gargantilla de Perles Cultivades
+                </h3>
+                <p class="text-colorSubtitol text-xs md:text-sm font-medium mt-1">
+                    580,00 €
+                </p>
             </div>
 
         </div>
+
+        <!-- CONTROLS DE PAGINACIÓ INFERIORS -->
+        <div class="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <!-- Selector de quantitat -->
+            <div class="relative">
+                <select aria-label="Productes per pàgina"
+                    class="appearance-none bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-4 py-1.5 pr-8 rounded-md font-medium cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    <option value="6" selected>6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-2.5 top-2.5 text-colorBtnText text-[10px] pointer-events-none"
+                    aria-hidden="true"></i>
+            </div>
+
+            <!-- Botons de paginació -->
+            <nav aria-label="Paginació" class="flex items-center gap-1.5">
+                <button type="button"
+                    class="bg-colorPrimary/10 text-colorPrimary hover:bg-colorPrimary-hover hover:text-colorBtnText border border-colorPrimary/30 px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    <i class="fa-solid fa-arrow-left text-[10px]" aria-hidden="true"></i> Anterior
+                </button>
+
+                <button type="button" aria-current="page" aria-label="Pàgina 1, pàgina actual"
+                    class="w-7 h-7 bg-colorPrimary text-colorBtnText rounded-md flex items-center justify-center font-bold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    1
+                </button>
+                <button type="button" aria-label="Pàgina 2"
+                    class="w-7 h-7 bg-colorPrimary/10 hover:bg-colorPrimary-hover text-colorPrimary border border-colorPrimary/30 hover:text-colorBtnText rounded-md flex items-center justify-center font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    2
+                </button>
+                <button type="button" aria-label="Pàgina 3" class="w-7 h-7 bg-colorPrimary/10
+                                        hover:bg-colorPrimary-hover
+                                        text-colorPrimary
+                                        hover:text-colorBtnText rounded-md
+                                        flex items-center
+                                        justify-center font-medium transition-colors
+                                        border
+                                        border-colorPrimary/30
+                                        cursor-pointer
+                                        focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2
+                                        ">
+                    3
+                </button>
+                <span class="px-1 text-colorSubtitol" aria-hidden="true">...</span>
+
+                <button type="button"
+                    class="bg-colorPrimary hover:bg-colorPrimary-hover text-colorBtnText px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-colorPrimary focus-visible:ring-offset-2">
+                    Següent <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+
+    </main>
+
+        <!-- PEU DE PÀGINA -->
+    <footer class="w-full border-t border-colorBorderDark/50 mt-12 pt-12 pb-8 px-6 md:px-12">
+        <section class="max-w-6xl mx-auto">
+
+            <!-- Graella de 4 columnes -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-xs md:text-sm">
+
+                <!-- Columna 1: Atenció al Client -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Atenció al Client</h3>
+                    <ul class="space-y-2 text-colorSubtitol text-xs">
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Preguntes Freqüents
+                                    (FAQ)</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Seguiment de
+                                    comandes</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Política de
+                                    devolucions i
+                                    reemborsaments</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Informació
+                                    d'enviaments i
+                                    terminis de lliurament</a>
+                            </h2>
+                        </li>
+                        <li class="pt-1">
+                            <h2>
+                                <a href="#"
+                                    class="hover:text-colorPrimary-hover transition-colors leading-relaxed block">Contacte:
+                                    Correu de suport, telèfon o accés directe a WhatsApp/Xat.</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Columna 2: Confiança i Seguretat -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Confiança i Seguretat</h3>
+                    <ul class="space-y-2 text-colorSubtitol text-xs">
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">
+                                    Mètodes de pagament acceptats</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Empreses de
+                                    transport</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Columna 3: Informació Legal i Corporativa -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Informació Legal i Corporativa
+                    </h3>
+                    <ul class="space-y-2 text-colorSubtitol text-xs">
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Termes i
+                                    condicions</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Política de privacitat i
+                                    Avís legal</a>
+                        </li>
+                        </h2>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Configuració / Política
+                                    de
+                                    cookies</a>
+                        </li>
+                        </h2>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-brand-burgundy transition-colors">Sobre nosaltres / La nostra
+                                    història</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Columna 4: Navegació i Localització -->
+                <section class="space-y-3">
+                    <h3 class="font-medium text-sm md:text-base text-colorTitol mb-3">Navegació i Localització</h3>
+                    <ul class="space-y-2 text-colorSubtitol text-xs">
+
+                        <li>
+                            <h2>
+                                <a href="#"
+                                    class="hover:text-colorPrimary-hover text-colorSubtitol transition-colors">Selector
+                                    d'idioma i
+                                    moneda</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2>
+                                <a href="#" class="hover:text-colorPrimary-hover transition-colors">Cercador de botigues
+                                    físiques</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </section>
+
+            </section>
+
+            <!-- Línia inferior del peu -->
+            <section
+                class="pt-6 border-t border-colorBorderDark/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-brand-muted">
+
+                <h2 class="text-colorTitol">© 2024 Ciro. Tots els drets reservats.</h2>
+
+
+                <!-- Icones de xarxes socials -->
+                <section class="flex items-center space-x-4 text-base text-colorTitol">
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="X / Twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </h2>
+                    <h2>
+                        <a href="#" class="hover:text-colorPrimary-hover transition-colors" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </h2>
+                </section>
+            </section>
+
+        </section>
     </footer>
-    
+
+
 </body>
 
 </html>
